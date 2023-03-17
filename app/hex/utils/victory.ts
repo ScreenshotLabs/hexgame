@@ -1,10 +1,10 @@
-interface Hex {
+export interface Hex {
   q: number
   r: number
   s?: number
 }
 
-interface HexTile {
+export interface HexTile {
   type: "0" | "1" | "N"
   q: number
   r: number
@@ -103,13 +103,13 @@ function findPath(start: Hex, end: Hex, tiles: HexTile[][], grid: Hex[]): any {
     let minDist: number | undefined = Infinity
     let currHex: Hex | null = null
 
-    grid.forEach((hex) => {
+    for (const hex of grid) {
       const key = `${hex.q},${hex.r}`
-      if (!visited[key] && minDist && dist[key]! < minDist) {
+      if (!visited[key] && dist[key] !== undefined && dist![key]! < (minDist ?? Infinity)) {
         minDist = dist[key]
         currHex = hex
       }
-    })
+    }
 
     // Mark the current hex as visited and update the distances of its neighbors
 
@@ -123,23 +123,28 @@ function findPath(start: Hex, end: Hex, tiles: HexTile[][], grid: Hex[]): any {
 
     visited[`${currHex.q},${currHex.r}`] = true
 
-    const neighbors = grid.filter(
-      (hex) =>
-        hexDistance(hex, currHex as Hex) === 1 &&
-        tiles[hex.r] &&
-        tiles[hex.r][hex.q] &&
-        tiles[hex.r][hex.q].type === tiles[start.r][start.q].type
-    )
-
-    neighbors.forEach((neighbor) => {
-      const neighborKey = `${neighbor.q},${neighbor.r}`
-      if (!visited[neighborKey]) {
-        const newDist = dist[`${currHex.q},${currHex.r}`] + hexDistance(currHex as Hex, neighbor)
-        if (newDist < dist[neighborKey]) {
-          dist[neighborKey] = newDist
-        }
+    const neighbors = grid.filter((hex) => {
+      if (!tiles[hex.r] || !tiles![hex.r]![hex.q]) {
+        return false
       }
+      return (
+        hexDistance(hex, currHex as Hex) === 1 &&
+        tiles![hex.r]![hex.q]!.type === tiles![start.r]![start.q]!.type
+      )
     })
+
+    if (currHex !== null) {
+      neighbors.forEach((neighbor) => {
+        const neighborKey = `${neighbor.q},${neighbor.r}`
+        if (!visited[neighborKey]) {
+          const newDist =
+            dist[`${currHex!.q},${currHex!.r}`]! + hexDistance(currHex as Hex, neighbor)!
+          if (newDist < dist[neighborKey]!) {
+            dist[neighborKey] = newDist
+          }
+        }
+      })
+    }
   }
 
   return hasEnd
@@ -167,7 +172,10 @@ export function convertTo2DArray(tiles: HexTile[]): HexTile[][] {
   for (const tile of tiles) {
     const rowIdx = tile.r - minR
     const colIdx = tile.q - minQ
-    arr[rowIdx][colIdx] = tile
+    if (!arr[rowIdx]) {
+      arr[rowIdx] = []
+    }
+    arr![rowIdx]![colIdx] = tile
   }
 
   return arr
