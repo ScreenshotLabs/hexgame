@@ -1,10 +1,10 @@
 type getIdFromHexProps = {
-  x: number
-  y: number
-}
+  x: number;
+  y: number;
+};
 
 function getIdFromHex({ x, y }: getIdFromHexProps) {
-  return `${x.toString().padStart(2, "0")}${y.toString().padStart(2, "0")}`
+  return `${x.toString().padStart(2, "0")}${y.toString().padStart(2, "0")}`;
 }
 
-export { getIdFromHex }
+export { getIdFromHex };
