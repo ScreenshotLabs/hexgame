@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "dotenv -- turbo dev",
+    "build": "dotenv -- turbo build",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "lint-staged": {

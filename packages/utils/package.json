@@ -1,0 +1,10 @@
+{
+  "name": "@hexgame/utils",
+  "version": "0.0.1",
+  "dependencies": {
+    "tsconfig": "*"
+  },
+  "scripts": {
+    "build": "ts-node src/index.ts"
+  }
+}

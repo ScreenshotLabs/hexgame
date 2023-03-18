@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST={"..\\..\\..\\node_modules\\@blitzjs\\rpc\\dist\\chunks\\rpc.mjs -> debug":{"id":"..\\..\\..\\node_modules\\@blitzjs\\rpc\\dist\\chunks\\rpc.mjs -> debug","files":["static/chunks/node_modules_blitzjs_rpc_node_modules_debug_src_browser_js.js"]}}
+self.__REACT_LOADABLE_MANIFEST={"..\\..\\..\\node_modules\\@blitzjs\\rpc\\dist\\chunks\\rpc.mjs -> debug":{id:8054,files:["static/chunks/54.cc40182aed562b0a.js"]}};
