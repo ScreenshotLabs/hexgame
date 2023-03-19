@@ -1,0 +1,12 @@
+{
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html",
+  "/api/rpc/[[...blitz]]": "pages/api/rpc/[[...blitz]].js",
+  "/auth/forgot-password": "pages/auth/forgot-password.html",
+  "/_document": "pages/_document.js",
+  "/auth/login": "pages/auth/login.html",
+  "/auth/reset-password": "pages/auth/reset-password.html",
+  "/auth/signup": "pages/auth/signup.html",
+  "/": "pages/index.html",
+  "/_app": "pages/_app.js"
+}

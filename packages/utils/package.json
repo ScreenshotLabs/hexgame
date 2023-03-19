@@ -1,0 +1,16 @@
+{
+  "name": "@hexgame/utils",
+  "version": "0.0.1",
+  "dependencies": {
+    "tsconfig": "*"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --dts"
+  },
+  "devDependencies": {
+    "listr2": "5.0.8",
+    "tsup": "6.6.3"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js"
+}
