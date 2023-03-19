@@ -1,12 +1,16 @@
+import { Game } from "boardgame.io";
 import { INVALID_MOVE } from "boardgame.io/core";
 import { jsonGrid, CustomHex } from "./constants/map";
-// import { randomIntFromInterval } from "app/hex/utils";
-import { HexTile, isVictory } from "@hexgame/utils";
-// import { calculateBestMove } from "app/hex/utils/ai";
+import {
+  HexTile,
+  isVictory,
+  calculateBestMove,
+  randomIntFromInterval,
+} from "@hexgame/utils";
 
-const cells = jsonGrid.coordinates
-  .filter((hex: CustomHex) => hex.isPlayable || hex.isStart || hex.isEnd)
-  .map((hex: CustomHex) => {
+const cells = (jsonGrid.coordinates as CustomHex[])
+  .filter((hex) => hex.isPlayable || hex.isStart || hex.isEnd)
+  .map((hex) => {
     return {
       type: hex.type,
       q: hex.q,
@@ -18,9 +22,13 @@ const cells = jsonGrid.coordinates
     };
   });
 
-export const Hex = {
-  setup: () => {
-    return { cells };
+interface GameState {
+  cells: HexTile[];
+}
+
+export const Hex: Game<GameState> = {
+  setup: (ctx) => {
+    return { cells: [] };
   },
   turn: {
     minMoves: 1,
@@ -32,7 +40,7 @@ export const Hex = {
         (cell) => cell.q === q && cell.r === r
       );
       if (G.cells[currentCell].type === "N") {
-        G.cells[currentCell].type = ctx.currentPlayer;
+        G.cells[currentCell].type = "1"; // ctx.currentPlayer;
       } else {
         return INVALID_MOVE;
       }

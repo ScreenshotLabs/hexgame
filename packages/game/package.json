@@ -2,12 +2,15 @@
   "name": "@hexgame/game",
   "version": "0.0.1",
   "dependencies": {
-    "tsconfig": "*",
-    "@hexgame/utils": "*"
+    "@hexgame/utils": "*",
+    "tsconfig": "*"
   },
   "scripts": {
-    "build": "ts-node src/index.ts"
+    "build": "tsup src/index.ts --format cjs --dts"
   },
   "types": "./dist/index.d.ts",
-  "main": "./dist/index.js"
+  "main": "./dist/index.js",
+  "devDependencies": {
+    "tsup": "6.6.3"
+  }
 }
